@@ -1,0 +1,6 @@
+{
+  "name": "AttendIQ",
+  "description": "Smart Attendance, Leave Planner, and Deterministic Attendance Advisor with Liquid Glass UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
