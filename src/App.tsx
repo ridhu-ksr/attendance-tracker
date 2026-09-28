@@ -10,6 +10,7 @@ import {
   Compass,
   Edit3,
   Home,
+  MapPin,
   MessageSquare,
   Palmtree,
   Plus,
@@ -67,6 +68,7 @@ import { AttendanceAdvisorChat } from './components/AttendanceAdvisorChat';
 import { RoleAndAuthScreen } from './components/RoleAndAuthScreen';
 import { StaffPortalView } from './components/StaffPortalView';
 import { QrStudentAttendanceView } from './components/QrSessionModalAndView';
+import { CampusSpaceFinderView } from './components/campus/CampusSpaceFinderView';
 
 type NavTab =
   | 'dashboard'
@@ -76,6 +78,7 @@ type NavTab =
   | 'planner'
   | 'leave'
   | 'whatif'
+  | 'campus_space'
   | 'history'
   | 'advisor'
   | 'profile';
@@ -657,6 +660,7 @@ export default function App() {
     { id: 'planner', label: 'Attendance Planner', icon: <Compass className="w-4 h-4" /> },
     { id: 'leave', label: 'Leave Planner', icon: <Palmtree className="w-4 h-4" /> },
     { id: 'whatif', label: 'What If?', icon: <Sliders className="w-4 h-4" /> },
+    { id: 'campus_space', label: 'Campus Space Finder', icon: <MapPin className="w-4 h-4" /> },
     { id: 'history', label: 'Attendance History', icon: <Clock className="w-4 h-4" /> },
     { id: 'advisor', label: 'Attendance Advisor', icon: <MessageSquare className="w-4 h-4" /> },
     { id: 'profile', label: 'Profile', icon: <User className="w-4 h-4" /> },
@@ -919,6 +923,15 @@ export default function App() {
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 Enter Initial Attendance
+              </GlassButton>
+
+              <GlassButton
+                size="sm"
+                variant="secondary"
+                onClick={() => setActiveTab('campus_space')}
+              >
+                <MapPin className="w-3.5 h-3.5" />
+                Campus Space Finder
               </GlassButton>
 
               <GlassButton
@@ -1921,6 +1934,13 @@ export default function App() {
               leaves={currentSectionLeaves}
               mode="page"
             />
+          )}
+
+          {/* ========================================================
+              SMART CAMPUS ROOM & SPACE FINDER MODULE
+             ======================================================== */}
+          {activeTab === 'campus_space' && (
+            <CampusSpaceFinderView studentProfile={profile} />
           )}
 
           {/* ========================================================
